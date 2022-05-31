@@ -1,6 +1,6 @@
 <template>
   <div
-    class="todo-list-item flex justify-between items-center py-2 px-2 cursor-pointer"
+    class="todo-list-item flex justify-between items-center py-2 px-2 bg-white cursor-pointer"
     @click="onComplete"
   >
     <span class="flex items-center">
