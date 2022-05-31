@@ -1,0 +1,9 @@
+@import "./helpers";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app {
+  font-family: $body-font-family, sans-serif;
+}
