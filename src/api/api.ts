@@ -14,3 +14,10 @@ const api = axios.create({
 });
 
 export default api;
+
+export enum API_METHODS {
+  'GET' = 'GET',
+  'PATCH' = 'PATCH',
+  'POST' = 'POST',
+  'DELETE' = 'DELETE',
+}

@@ -22,7 +22,7 @@ export default defineComponent({
 
   setup (props, { emit }) {
     const onComplete = (): void => {
-      emit('complete', props.item.id);
+      emit('complete', props.item);
     };
 
     const onDelete = (): void => {

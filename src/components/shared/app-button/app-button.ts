@@ -11,7 +11,11 @@ export default defineComponent({
       validator: (btnType: AppButtonTypes) => {
         return (<any>Object).values(AppButtonTypes).includes(btnType);
       },
-    }
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup () {

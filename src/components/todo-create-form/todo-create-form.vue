@@ -1,7 +1,7 @@
 <template>
   <form
     class="todo-create-form"
-    @submit.prevent="onCreate"
+    @submit.prevent="onSubmit"
   >
     <div class="flex justify-between items-center">
       <AppInput
@@ -10,8 +10,9 @@
         placeholder="Type new item"
       />
       <AppButton
-        class="ml-4 h-8 px-6 text-white"
+        class="ml-4 h-8 py-4 px-6 text-white"
         type="submit"
+        :is-disabled="isSubmitDisabled"
       >
         Add
       </AppButton>
