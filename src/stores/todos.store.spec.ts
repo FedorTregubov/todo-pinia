@@ -11,7 +11,7 @@ describe('Store Todos', () => {
     setActivePinia(createPinia());
   });
 
-  it('sets listStatus properly', () => {
+  it('should set listStatus properly', () => {
     const todosStore = useTodosStore();
 
     expect(todosStore.listStatus).toBe(LOAD_STATUSES.IS_LOADING);
@@ -23,7 +23,7 @@ describe('Store Todos', () => {
     expect(todosStore.listStatus).toBe(LOAD_STATUSES.IS_ERROR);
   });
 
-  it('sets list properly', () => {
+  it('should set list properly', () => {
     const todosStore = useTodosStore();
 
     expect(todosStore.list).toEqual([]);
@@ -32,7 +32,7 @@ describe('Store Todos', () => {
     expect(todosStore.list).toEqual(todos);
   });
 
-  it('sets listPagination properly', () => {
+  it('should set listPagination properly', () => {
     const todosStore = useTodosStore();
 
     expect(todosStore.listPagination).toEqual(APP_PAGINATION_DEFAULT);
