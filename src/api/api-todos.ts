@@ -1,28 +1,32 @@
 import api, { API_METHODS } from './api';
-import type { ITodo } from '@/models';
+import { encodeQueryParams } from './api-helpers';
+import type {
+  ITodoCompleteRequest,
+  ITodoCreateRequest,
+  ITodoListRequestParams,
+} from '@/models';
 
-export const getTodosList = () =>
+export const getTodosList = (params: ITodoListRequestParams) =>
   api({
+    url: encodeQueryParams(params),
     method: API_METHODS.GET,
   });
 
-export const postTodoItem = (data: { title: ITodo['title'] }) =>
+export const postTodoItem = (data: ITodoCreateRequest) =>
   api({
     method: API_METHODS.POST,
     data,
   });
 
-export const completeTodoItem = (id: ITodo['id'], completed: ITodo['completed']) =>
+export const completeTodoItem = (id: string, data: ITodoCompleteRequest) =>
   api({
-    url: String(id),
+    url: id,
     method: API_METHODS.PATCH,
-    data: {
-      completed,
-    },
+    data,
   });
 
-export const deleteTodoItem = (id: ITodo['id']) =>
+export const deleteTodoItem = (id: string) =>
   api({
-    url: String(id),
+    url: id,
     method: API_METHODS.DELETE,
   });

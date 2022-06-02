@@ -7,6 +7,7 @@ TODO app implemented with a help of vue3 & pinia
 [x] - markup
 [x] - state-management
 [x] - connect api. See https://jsonplaceholder.typicode.com/guide/
-[] - pagination 
+[x] - pagination 
+[] - fix infinite scroll bug: scrolling top top and scrolling to bottom calls fetch both
 [] - filter by title, done / undone
 [] - tests

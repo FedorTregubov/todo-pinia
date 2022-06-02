@@ -1,6 +1,8 @@
-import { defineComponent } from 'vue';
-import { IconCheck, IconTrash } from '@/components/shared/icons';
+import { defineComponent, ref } from 'vue';
+import { IconCheck, IconTrash, IconLoading } from '@/components/shared/icons';
 import AppButton, { AppButtonTypes } from '@/components/shared/app-button';
+import { type ITodo, LOAD_STATUSES } from '@/models';
+import { useTodosStore } from '@/stores/todos.store';
 
 export default defineComponent({
   name: 'TodoListItem',
@@ -8,28 +10,41 @@ export default defineComponent({
   components: {
     IconCheck,
     IconTrash,
+    IconLoading,
     AppButton,
   },
 
   props: {
     item: {
-      type: Object,
+      type: Object as () => ITodo,
       required: true,
     },
   },
 
-  emits: ['complete', 'delete'],
+  setup (props) {
+    const todosStore = useTodosStore();
 
-  setup (props, { emit }) {
-    const onComplete = (): void => {
-      emit('complete', props.item);
+    const itemStatus = ref(LOAD_STATUSES.IS_IDLE);
+
+    const onComplete = async (): Promise<void> => {
+      if (itemStatus.value === LOAD_STATUSES.IS_LOADING) return;
+
+      itemStatus.value = LOAD_STATUSES.IS_LOADING;
+      await todosStore.complete(props.item);
+      itemStatus.value = LOAD_STATUSES.IS_IDLE;
     };
 
-    const onDelete = (): void => {
-      emit('delete', props.item.id);
+    const onDelete = async (): Promise<void> => {
+      if (itemStatus.value === LOAD_STATUSES.IS_LOADING) return;
+
+      itemStatus.value = LOAD_STATUSES.IS_LOADING;
+      await todosStore.delete(props.item.id);
+      itemStatus.value = LOAD_STATUSES.IS_IDLE;
     };
 
     return {
+      itemStatus,
+      LOAD_STATUSES,
       onComplete,
       onDelete,
       AppButtonTypes,

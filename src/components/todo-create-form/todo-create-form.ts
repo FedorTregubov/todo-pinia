@@ -1,7 +1,8 @@
 import { computed, defineComponent, ref } from 'vue';
 import AppInput from '@/components/shared/app-input/app-input.vue';
 import AppButton from '@/components/shared/app-button/app-button.vue';
-import { LOAD_STATUSES, useTodosStore } from '@/stores/todos.store';
+import { useTodosStore } from '@/stores/todos.store';
+import { LOAD_STATUSES } from '@/models';
 
 export default defineComponent({
   name: 'TodoCreateForm',

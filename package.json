@@ -16,7 +16,8 @@
     "pinia": "^2.0.13",
     "primevue": "^3.12.6",
     "sass": "^1.52.1",
-    "vue": "^3.2.33"
+    "vue": "^3.2.33",
+    "vue-infinite-scrolling": "^0.0.2"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",

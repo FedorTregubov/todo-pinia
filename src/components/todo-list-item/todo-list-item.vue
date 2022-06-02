@@ -1,13 +1,21 @@
 <template>
   <div
-    class="todo-list-item flex justify-between items-center py-2 px-2 bg-white cursor-pointer"
+    class="todo-list-item flex justify-between items-center py-2 px-2 bg-white"
+    :class="itemStatus === LOAD_STATUSES.IS_LOADING ? 'cursor-default' : 'cursor-pointer'"
     @click="onComplete"
   >
     <span class="flex items-center">
-      <IconCheck
-        v-if="item.completed"
-        class="todo-list-item__icon-check w-4 h-4 mr-2 fill-emerald-400"
-      />
+      <span class="todo-list-item__icon-check mr-2">
+        <IconLoading
+          v-if="itemStatus === LOAD_STATUSES.IS_LOADING"
+          class="w-4 h-4 fill-emerald-400 animate-spin"
+        />
+
+        <IconCheck
+          v-else-if="item.completed"
+          class="w-4 h-4 fill-emerald-400"
+        />
+      </span>
 
       <span
         class="todo-list-item__title"
@@ -20,6 +28,7 @@
     <AppButton
       class="ml-2"
       :button-type="AppButtonTypes.DANGER"
+      :is-disabled="itemStatus === LOAD_STATUSES.IS_LOADING"
       @click.stop="onDelete"
     >
       <IconTrash class="todo-list-item__icon-delete w-4 h-4 fill-white" />

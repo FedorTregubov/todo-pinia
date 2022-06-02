@@ -1,13 +1,8 @@
 import { defineStore } from 'pinia'
-import { todos } from '@/data/mocks/todos.mock.data';
+import { logger } from '@/utils';
 import { completeTodoItem, deleteTodoItem, getTodosList, postTodoItem } from '@/api';
-import type { ITodo } from '@/models';
-
-export enum LOAD_STATUSES {
-  'IS_LOADING' = 'IS_LOADING',
-  'IS_ERROR' = 'IS_ERROR',
-  'IS_IDLE' = 'IS_IDLE',
-}
+import { type ITodo, LOAD_STATUSES } from '@/models';
+import { APP_PAGINATION_DEFAULT } from '@/data/constants';
 
 export const useTodosStore = defineStore({
   id: 'todos',
@@ -15,35 +10,41 @@ export const useTodosStore = defineStore({
   state: () => ({
     list: [] as ITodo[],
     listStatus: LOAD_STATUSES.IS_LOADING,
+    listPagination: { ...APP_PAGINATION_DEFAULT },
   }),
 
   actions: {
     async fetch () {
       try {
         this.listStatus = LOAD_STATUSES.IS_LOADING;
-        const { data } = await getTodosList();
-        this.list = [...data];
+        const { data } = await getTodosList({
+          _start: this.listPagination.offset,
+          _limit: this.listPagination.limit,
+        });
+        this.list = [...this.list, ...data];
         this.listStatus = LOAD_STATUSES.IS_IDLE;
       } catch (error) {
         this.listStatus = LOAD_STATUSES.IS_ERROR;
-        console.log('Error occurred while fetching todos', error);
+        logger('Error occurred while fetching todos', error);
       }
     },
     async create (title: ITodo['title']) {
       try {
         this.listStatus = LOAD_STATUSES.IS_LOADING;
-        const { data } = await postTodoItem({ title });
-        this.list.unshift(data);
+        await postTodoItem({ title });
+        this.list = [];
+        this.listPagination = {...APP_PAGINATION_DEFAULT};
+        await this.fetch();
         this.listStatus = LOAD_STATUSES.IS_IDLE;
       } catch (error) {
         this.listStatus = LOAD_STATUSES.IS_ERROR;
-        console.log('Error occurred while creating todo', error);
+        logger('Error occurred while creating todo', error);
       }
     },
     async complete (todoItem: ITodo) {
       try {
         this.listStatus = LOAD_STATUSES.IS_LOADING;
-        await completeTodoItem(todoItem.id, !todoItem.completed);
+        await completeTodoItem(String(todoItem.id), { completed: !todoItem.completed });
         const candidate = this.list.find(item => item.id === todoItem.id);
         if (candidate) {
           candidate.completed = !candidate.completed;
@@ -51,18 +52,18 @@ export const useTodosStore = defineStore({
         this.listStatus = LOAD_STATUSES.IS_IDLE;
       } catch (error) {
         this.listStatus = LOAD_STATUSES.IS_ERROR;
-        console.log('Error occurred while toggling status completed for todo', error);
+        logger('Error occurred while toggling status completed for todo', error);
       }
     },
     async delete (id: ITodo['id']) {
       try {
         this.listStatus = LOAD_STATUSES.IS_LOADING;
-        await deleteTodoItem(id);
+        await deleteTodoItem(String(id));
         this.list = this.list.filter(item => item.id !== id);
         this.listStatus = LOAD_STATUSES.IS_IDLE;
       } catch (error) {
         this.listStatus = LOAD_STATUSES.IS_ERROR;
-        console.log('Error occurred while deleting todo', error);
+        logger('Error occurred while deleting todo', error);
       }
     },
   },
