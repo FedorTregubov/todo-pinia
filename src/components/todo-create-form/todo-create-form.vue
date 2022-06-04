@@ -1,8 +1,5 @@
 <template>
-  <form
-    class="todo-create-form"
-    @submit.prevent="onSubmit"
-  >
+  <form class="todo-create-form" @submit.prevent="onSubmit">
     <div class="flex justify-between items-center">
       <AppInput
         class="flex-1"

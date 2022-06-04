@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'AppInput',
+  name: "AppInput",
 
   props: {
     modelValue: {
@@ -9,11 +9,11 @@ export default defineComponent({
     },
   },
 
-  emit: ['update:modelValue'],
+  emit: ["update:modelValue"],
 
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     const onInput = (event: Event): void => {
-      emit('update:modelValue', (event.target as HTMLInputElement).value);
+      emit("update:modelValue", (event.target as HTMLInputElement).value);
     };
 
     return {

@@ -1,10 +1,10 @@
-import { defineComponent } from 'vue';
-import { APP_TITLE } from '@/data/constants';
+import { defineComponent } from "vue";
+import { APP_TITLE } from "@/data/constants";
 
 export default defineComponent({
-  name: 'AppHeader',
+  name: "AppHeader",
 
-  setup () {
+  setup() {
     return {
       APP_TITLE,
     };

@@ -1,15 +1,27 @@
-# todo-pinia
+# Todo-Pinia
 
-TODO app implemented with a help of vue3 & pinia
+## About
+Simple todo app to demonstrate [Pinia](https://pinia.vuejs.org/cookbook/testing.html#unit-testing-a-store).
 
-## TODO
-[x] - init project: vue, ts, pinia, styles
-[x] - markup
-[x] - state-management
-[x] - connect api. See https://jsonplaceholder.typicode.com/guide/
-[x] - pagination 
-[] - fix infinite scroll bug: scrolling top top and scrolling to bottom calls fetch both
-[] - filter by title, done / undone
-[] - tests
-  See: https://testdriven.io/blog/vue-unit-testing/
-[] - config test-coverage. Each component should have it`s own test
+## Development
+```sh
+npm ci && npm run dev
+```
+
+## Lint
+```sh
+npm run lint
+```
+
+## Test
+
+Unit testing:
+
+```sh
+npm run test:unit
+```
+
+## Build
+```sh
+npm run build
+```

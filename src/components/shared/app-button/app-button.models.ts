@@ -1,4 +1,4 @@
 export enum AppButtonTypes {
-  PRIMARY= 'PRIMARY',
-  DANGER= 'DANGER',
+  PRIMARY = "PRIMARY",
+  DANGER = "DANGER",
 }

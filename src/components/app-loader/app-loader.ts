@@ -1,12 +1,12 @@
-import { defineComponent } from 'vue';
-import { IconLoading } from '@/components/shared/icons';
+import { defineComponent } from "vue";
+import { IconLoading } from "@/components/shared/icons";
 
 export default defineComponent({
-  name: 'AppLoader',
+  name: "AppLoader",
 
   components: { IconLoading },
 
-  setup () {
+  setup() {
     return {};
   },
 });

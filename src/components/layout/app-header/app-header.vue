@@ -8,14 +8,9 @@
         {{ APP_TITLE }}
       </h1>
 
-      <nav
-        class="ml-2"
-        data-test="app-header__nav"
-      >
+      <nav class="ml-2" data-test="app-header__nav">
         <ul class="flex justify-end">
-          <li class="text-white">
-            About
-          </li>
+          <li class="text-white">About</li>
         </ul>
       </nav>
     </div>

@@ -1,11 +1,14 @@
-import { defineComponent, ref } from 'vue';
-import { IconCheck, IconTrash, IconLoading } from '@/components/shared/icons';
-import AppButton, { AppButtonTypes } from '@/components/shared/app-button';
-import { type ITodo, LOAD_STATUSES } from '@/models';
-import { useTodosStore } from '@/stores/todos.store';
+import { defineComponent, ref } from "vue";
+// import { IconCheck, IconTrash, IconLoading } from "@/components/shared/icons";
+import IconCheck from "@/components/shared/icons/icon-check.vue";
+import IconTrash from "@/components/shared/icons/icon-trash.vue";
+import IconLoading from "@/components/shared/icons/icon-loading.vue";
+import AppButton, { AppButtonTypes } from "@/components/shared/app-button";
+import { type ITodo, LOAD_STATUSES } from "@/models";
+import { useTodosStore } from "@/stores/todos.store";
 
 export default defineComponent({
-  name: 'TodoListItem',
+  name: "TodoListItem",
 
   components: {
     IconCheck,
@@ -21,7 +24,7 @@ export default defineComponent({
     },
   },
 
-  setup (props) {
+  setup(props) {
     const todosStore = useTodosStore();
 
     const itemStatus = ref(LOAD_STATUSES.IS_IDLE);

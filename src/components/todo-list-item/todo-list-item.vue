@@ -1,21 +1,22 @@
 <template>
   <div
     class="todo-list-item flex justify-between items-center py-2 px-2 bg-white"
-    :class="itemStatus === LOAD_STATUSES.IS_LOADING ? 'cursor-default' : 'cursor-pointer'"
+    :class="
+      itemStatus === LOAD_STATUSES.IS_LOADING
+        ? 'cursor-default'
+        : 'cursor-pointer'
+    "
     @click="onComplete"
   >
     <span class="flex items-center">
-      <span class="todo-list-item__icon-check mr-2">
-        <IconLoading
-          v-if="itemStatus === LOAD_STATUSES.IS_LOADING"
-          class="w-4 h-4 fill-emerald-400 animate-spin"
-        />
-
-        <IconCheck
-          v-else-if="item.completed"
-          class="w-4 h-4 fill-emerald-400"
-        />
-      </span>
+      <IconLoading
+        v-if="itemStatus === LOAD_STATUSES.IS_LOADING"
+        class="w-4 h-4 mr-2 fill-emerald-400 animate-spin"
+      />
+      <IconCheck
+        v-else-if="item.completed"
+        class="w-4 h-4 mr-2 fill-emerald-400"
+      />
 
       <span
         class="todo-list-item__title"

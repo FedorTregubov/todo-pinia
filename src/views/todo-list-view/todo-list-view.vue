@@ -1,6 +1,6 @@
 <template>
   <div class="todo-list">
-    <TodoCreateForm @create="onCreate" />
+    <TodoCreateForm />
 
     <AppErrorCatch v-if="todosStatus === LOAD_STATUSES.IS_ERROR" />
 
@@ -11,6 +11,7 @@
           :key="`todo-item-${todo.id}`"
           :class="{ 'border-t': index > 0 }"
           :item="todo"
+          data-test="todo-list-item"
         />
 
         <VueInfiniteScrolling
@@ -27,4 +28,4 @@
     </template>
   </div>
 </template>
-<script lang="ts" src="./todo-list.ts"></script>
+<script lang="ts" src="./todo-list-view.ts"></script>

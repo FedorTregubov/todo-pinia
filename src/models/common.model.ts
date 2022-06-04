@@ -4,7 +4,7 @@ export interface IAppPagination {
 }
 
 export enum LOAD_STATUSES {
-  'IS_LOADING' = 'IS_LOADING',
-  'IS_ERROR' = 'IS_ERROR',
-  'IS_IDLE' = 'IS_IDLE',
+  "IS_LOADING" = "IS_LOADING",
+  "IS_ERROR" = "IS_ERROR",
+  "IS_IDLE" = "IS_IDLE",
 }

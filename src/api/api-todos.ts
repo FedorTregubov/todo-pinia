@@ -1,10 +1,11 @@
-import api, { API_METHODS } from './api';
-import { encodeQueryParams } from './api-helpers';
+import api from "./api";
+import { API_METHODS } from "./api.models";
+import { encodeQueryParams } from "./api-helpers";
 import type {
   ITodoCompleteRequest,
   ITodoCreateRequest,
   ITodoListRequestParams,
-} from '@/models';
+} from "@/models";
 
 export const getTodosList = (params: ITodoListRequestParams) =>
   api({

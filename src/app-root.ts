@@ -1,10 +1,10 @@
-import { defineComponent } from 'vue';
-import TodoList from '@/components/todo-list/todo-list.vue';
-import AppHeader from '@/components/layout/app-header/app-header.vue';
-import AppFooter from '@/components/layout/app-footer/app-footer.vue';
+import { defineComponent } from "vue";
+import TodoList from "@/views/todo-list-view/todo-list-view.vue";
+import AppHeader from "@/components/layout/app-header/app-header.vue";
+import AppFooter from "@/components/layout/app-footer/app-footer.vue";
 
 export default defineComponent({
-  name: 'AppRoot',
+  name: "AppRoot",
 
   components: {
     AppHeader,
@@ -12,7 +12,7 @@ export default defineComponent({
     TodoList,
   },
 
-  setup () {
+  setup() {
     return {};
   },
 });

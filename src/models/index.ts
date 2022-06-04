@@ -1,2 +1,2 @@
-export * from './common.model';
-export * from './todos.model';
+export * from "./common.model";
+export * from "./todos.model";

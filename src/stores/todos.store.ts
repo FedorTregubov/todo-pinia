@@ -1,11 +1,16 @@
-import { defineStore } from 'pinia'
-import { logger } from '@/utils';
-import { completeTodoItem, deleteTodoItem, getTodosList, postTodoItem } from '@/api';
-import { type ITodo, LOAD_STATUSES } from '@/models';
-import { APP_PAGINATION_DEFAULT } from '@/data/constants';
+import { defineStore } from "pinia";
+import { logger } from "@/utils";
+import {
+  completeTodoItem,
+  deleteTodoItem,
+  getTodosList,
+  postTodoItem,
+} from "@/api";
+import { type ITodo, LOAD_STATUSES } from "@/models";
+import { APP_PAGINATION_DEFAULT } from "@/data/constants";
 
 export const useTodosStore = defineStore({
-  id: 'todos',
+  id: "todos",
 
   state: () => ({
     list: [] as ITodo[],
@@ -14,7 +19,7 @@ export const useTodosStore = defineStore({
   }),
 
   actions: {
-    async fetch () {
+    async fetch() {
       try {
         this.listStatus = LOAD_STATUSES.IS_LOADING;
         const { data } = await getTodosList({
@@ -25,48 +30,52 @@ export const useTodosStore = defineStore({
         this.listStatus = LOAD_STATUSES.IS_IDLE;
       } catch (error) {
         this.listStatus = LOAD_STATUSES.IS_ERROR;
-        logger('Error occurred while fetching todos', error);
+        logger("Error occurred while fetching todos", error);
       }
     },
-    async create (title: ITodo['title']) {
+    async create(title: ITodo["title"]) {
       try {
         this.listStatus = LOAD_STATUSES.IS_LOADING;
         await postTodoItem({ title });
         this.list = [];
-        this.listPagination = {...APP_PAGINATION_DEFAULT};
+        this.listPagination = { ...APP_PAGINATION_DEFAULT };
         await this.fetch();
         this.listStatus = LOAD_STATUSES.IS_IDLE;
       } catch (error) {
         this.listStatus = LOAD_STATUSES.IS_ERROR;
-        logger('Error occurred while creating todo', error);
+        logger("Error occurred while creating todo", error);
       }
     },
-    async complete (todoItem: ITodo) {
+    async complete(todoItem: ITodo) {
       try {
         this.listStatus = LOAD_STATUSES.IS_LOADING;
-        await completeTodoItem(String(todoItem.id), { completed: !todoItem.completed });
-        const candidate = this.list.find(item => item.id === todoItem.id);
+        await completeTodoItem(String(todoItem.id), {
+          completed: !todoItem.completed,
+        });
+        const candidate = this.list.find((item) => item.id === todoItem.id);
         if (candidate) {
           candidate.completed = !candidate.completed;
         }
         this.listStatus = LOAD_STATUSES.IS_IDLE;
       } catch (error) {
         this.listStatus = LOAD_STATUSES.IS_ERROR;
-        logger('Error occurred while toggling status completed for todo', error);
+        logger(
+          "Error occurred while toggling status completed for todo",
+          error
+        );
       }
     },
-    async delete (id: ITodo['id']) {
+    async delete(id: ITodo["id"]) {
       try {
         this.listStatus = LOAD_STATUSES.IS_LOADING;
         await deleteTodoItem(String(id));
-        this.list = this.list.filter(item => item.id !== id);
+        this.list = this.list.filter((item) => item.id !== id);
         this.listStatus = LOAD_STATUSES.IS_IDLE;
       } catch (error) {
         this.listStatus = LOAD_STATUSES.IS_ERROR;
-        logger('Error occurred while deleting todo', error);
+        logger("Error occurred while deleting todo", error);
       }
     },
   },
-  getters: {
-  },
+  getters: {},
 });

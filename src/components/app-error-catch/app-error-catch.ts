@@ -1,9 +1,9 @@
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'AppErrorCatch',
+  name: "AppErrorCatch",
 
-  setup () {
+  setup() {
     return {};
   },
 });

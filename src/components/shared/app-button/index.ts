@@ -1,4 +1,4 @@
-import AppButton from './app-button.vue';
+import AppButton from "./app-button.vue";
 
-export * from './app-button.models';
+export * from "./app-button.models";
 export default AppButton;

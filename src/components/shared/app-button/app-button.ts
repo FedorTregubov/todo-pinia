@@ -1,8 +1,8 @@
-import { defineComponent } from 'vue';
-import { AppButtonTypes } from './app-button.models';
+import { defineComponent } from "vue";
+import { AppButtonTypes } from "./app-button.models";
 
 export default defineComponent({
-  name: 'AppButton',
+  name: "AppButton",
 
   props: {
     buttonType: {
@@ -18,7 +18,7 @@ export default defineComponent({
     },
   },
 
-  setup () {
+  setup() {
     return { AppButtonTypes };
   },
 });

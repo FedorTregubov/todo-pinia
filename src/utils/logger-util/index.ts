@@ -1,3 +1,3 @@
-export function logger (humanMessage: string, error: any): void {
+export function logger<T>(humanMessage: string, error: T): void {
   console.error(humanMessage, error);
 }
